@@ -67,7 +67,7 @@ def generate_A(x, n_vertex, n_max):
 def normalize_A(A, lmax=2):
     A = F.relu(A)
     N = A.shape[1]
-    A = A * (torch.ones(N, N).cuda() - torch.eye(N, N).cuda())  # new add !!  将对角线元素置0
+    A = A * (torch.ones(N, N).cuda() - torch.eye(N, N).cuda()) 
     A = A + A.transpose(1,2)
 
     d = torch.sum(A, 2)
@@ -254,4 +254,5 @@ def evaluate(test_iter, model, acc_test_best, f1_test_best, picture_name, draw_C
 
     # return correct / total
     return accuracy, f1, cmx
+
 
