@@ -301,19 +301,3 @@ class trend_stgcn(nn.Module):
         result_softmax = self.softmax(result)
 
         return result_softmax, result
-
-
-if __name__ == '__main__':
-    X = torch.rand(32, 64, 78).cuda()
-    ker_set = [3, 5, 7]  # 235  2367 Connecting那篇推荐
-    trd_k = 1
-    cin = cout = trd_k + 1
-    net = trend_stgcn(X, k_adj=3, GCN_numout=78, num_class=2, trd_k=trd_k, cin=cin, cout=cout, ker_set=ker_set,
-                      tm_len=78, blocks=1, layers=1, dilation_factor=2)
-    net = net.cuda()
-    print(net)
-    Y, _ = net(X)
-    print(Y.size())
-
-    loaded_adj = np.load('/data/wangjincen/P300_TST/bci3/adjacency_matrix_bci3.npy')
-    print(loaded_adj)
