@@ -65,12 +65,6 @@ if __name__ == '__main__':
         help='Number of workers for data loader. (default: 8)'
     )
     parser.add_argument(
-        '--wd',
-        type=float,
-        default=0.01,
-        help='weight_decay'
-    )
-    parser.add_argument(
         '--blocks',
         type=int,
         default=1,
@@ -157,8 +151,7 @@ if __name__ == '__main__':
 
     criterion = nn.CrossEntropyLoss().to(device)
     optimizer = optim.Adam(model.parameters(),
-                        lr=opt.lr,
-                        weight_decay=opt.wd, # 权重衰减等价于L2正则化
+                        lr=opt.lr
     )
 
     # ---------- Train --------------
@@ -250,3 +243,4 @@ if __name__ == '__main__':
                   'best_epoch': ep_best,
                   'best_cmx': cmx_best,
                   })
+
