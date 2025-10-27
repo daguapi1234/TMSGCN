@@ -253,7 +253,7 @@ class trend_stgcn(nn.Module):
         self.cdim = xdim[2]
         self.device = X.device
 
-        elc_loc_path = '/data/wangjincen/P300_TST/bci3/eloc64.txt'
+        elc_loc_path = './eloc64.txt'
         self.distance_adj = get_distance_adj(elc_loc_path, circumference=0.56, a=0.2)
         self.distance_adj = torch.from_numpy(self.distance_adj).to(self.device)
         self.distance_adj = self.distance_adj.to(torch.float32)
@@ -301,3 +301,4 @@ class trend_stgcn(nn.Module):
         result_softmax = self.softmax(result)
 
         return result_softmax, result
+
